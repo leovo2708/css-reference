@@ -44,7 +44,7 @@
     <section>
         <h2>outline</h2>
         <div class="container">
-            <h4>Sử dụng outline sẽ ko làm tăng kích thước element như border</h4>
+            <h4>Sử dụng outline sẽ ko làm tăng kích thước element như border, do đó chúng ta cần set một padding khi sử dụng outline để tránh outline đè lên element khác</h4>
             <div class="block-yellow">Hello <span id="border">hover to border</span> world</div>
             <div class="block--alpha">Hello <span id="outline">hover to outline</span> world</div>
             <style type="text/css">
@@ -74,6 +74,32 @@
             <h4>ko sử dụng clear: both nhưng tính lại kích thước content chính xác hơn</h4>
             <div class="block-yellow" style="float: left; width: 100px;">left</div>
             <div class="block--alpha" style="margin-left: 100px;">set margin-left</div>
+        </div>
+        <div class="container">
+            <h4>khi bạn float một element, nó sẽ mất toàn bộ height, container sẽ ko bít cần expand height bao nhiêu là đủ để chứa nó, refer: http://stackoverflow.com/questions/6493989/float-right-why-below-container</h4>
+            <div class="block-yellow" style="padding: 3px;">
+                <div class="block--alpha" style="float: left;">float left</div>
+            </div>
+        </div>
+        <div class="container">
+            <h4>giải pháp là chúng ta clear fix</h4>
+            <div class="block-yellow" style="padding: 3px;">
+                <div class="block--alpha" style="float: left;">float left</div>
+                <div class="clearfix">&nbsp;</div>
+            </div>
+        </div>
+        <div class="container">
+            <h4>một giải pháp khác là bắt chước bootstrap</h4>
+            <div class="block-yellow" id="float" style="padding: 3px;">
+                <div class="block--alpha" style="float: left;">float left</div>
+            </div>
+            <style type="text/css">
+                #float:after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                }
+            </style>
         </div>
     </section>
     <section>
